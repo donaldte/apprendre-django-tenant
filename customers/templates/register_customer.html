@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>tenant</title>
+</head>
+<body>
+
+    <h1> Create a new customer </h1>
+
+    {% if url %}
+
+    <p style="color:blue"> your account has been create successfully this is your dommain name: {{url}}</p>
+
+    {% endif %}
+
+    <form method="post">
+        {% csrf_token %}
+        <label for="name">Name</label>
+        <input type="text" name="name" id="name" placeholder="name" required>
+<br><br>
+        <label for="institution_name">Institution name</label>
+        <input type="text" name="institution_name" id="institution_name" placeholder="institution name" required>
+        <br><br>
+
+        <label for="phone">Phone</label>
+        <input type="text" name="phone" id="phone" placeholder="phone" required>
+        <br><br>
+
+        <label for="email">Email</label>
+        <input type="email" name="email" id="email" placeholder="email" required>
+        <br><br>
+
+        <label for="password">Password</label>
+        <input type="password" name="password" id="password" placeholder="password" required>
+        <br><br>
+
+        <label for="password_confirm">Password confirm</label>
+        <input type="password" name="password2" id="password_confirm" placeholder="password confirm" required>
+        <br><br>
+
+        <input type="submit" value="Register">
+
+    </form>
+    
+</body>
+</html>
