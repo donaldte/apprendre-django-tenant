@@ -3,11 +3,11 @@ version: '3'
 services:
   web:
     build: .
-    command: python manage.py runserver 0.0.0.0:8000
+    command: python manage.py runserver 0.0.0.0:8083
     volumes:
       - .:/app
     ports:
-      - "8000:8000"
+      - 8083:8083
     depends_on:
       - db
     environment:
@@ -23,7 +23,8 @@ services:
   nginx:
     image: nginx:latest
     ports:
-      - "8083:80"
+      - 83:83
+      - 443:443
     volumes:
       - ./nginx/nginx.conf:/etc/nginx/dea.conf
       - .:/app
