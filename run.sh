@@ -40,4 +40,4 @@ sleep 5
 echo "** Number of workers ${GUNICORN_WORKERS}"
 echo "** Version ${VERSION}"
 echo "** Starting gunicorn..."
-gunicorn dj_tenant.wsgi:application -b 0:8000 -w "${GUNICORN_WORKERS}" --log-level DEBUG --reload --threads=10 --timeout=3600
+gunicorn dj_tenant.wsgi:application -b 0:8083 -w "${GUNICORN_WORKERS}" --log-level DEBUG --reload --threads=10 --timeout=3600

@@ -14,7 +14,7 @@ SECRET_KEY = 'django-insecure-^o_(%4k!a_dl&3hz&2qzjc$@m*&k*ww^1k-91eg7@#pdjwb+g6
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*', 'efficient-research.com', 'www.efficient-research.com']
 
 
 
