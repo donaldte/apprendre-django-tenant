@@ -10,17 +10,6 @@ services:
       - .:/app
     env_file:
       - ".env"
-    depends_on:
-      - db
-    environment:
-      - DATABASE_URL=postgres://donald:chercheur@db:5432/testdatabase
-
-  db:
-    image: postgres:12
-    environment:
-      POSTGRES_DB: testdatabase
-      POSTGRES_USER: donald
-      POSTGRES_PASSWORD: chercheur
 
   nginx:
     image: nginx:latest
