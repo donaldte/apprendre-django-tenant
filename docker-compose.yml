@@ -26,7 +26,7 @@ services:
     image: nginx:latest
     ports:
       - 83:83
-      - 443:443
+      - "8443:443"
     volumes:
       - ./nginx/nginx.conf:/etc/nginx/dea.conf
       - .:/app
