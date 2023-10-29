@@ -3,11 +3,13 @@ version: '3'
 services:
   web:
     build: .
-    command: python manage.py runserver 0.0.0.0:8083
+    command: "sh run.sh"
+    ports:
+      - "8021:8000"
     volumes:
       - .:/app
-    ports:
-      - 8083:8083
+    env_file:
+      - ".env"
     depends_on:
       - db
     environment:
@@ -28,5 +30,16 @@ services:
     volumes:
       - ./nginx/nginx.conf:/etc/nginx/dea.conf
       - .:/app
+      - ./certbot/conf:/etc/letsencrypt
+      - ./certbot/www:/var/www/certbot
     depends_on:
       - web
+
+
+  certbot:
+    image: certbot/certbot
+    container_name: certbot
+    volumes: 
+      - ./certbot/conf:/etc/letsencrypt
+      - ./certbot/www:/var/www/certbot
+    command: certonly --webroot -w /var/www/certbot --force-renewal --email donaldtedom0@gmail.com -d efficient-research.com --agree-tos     
