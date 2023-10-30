@@ -1,18 +1,13 @@
-# Utilisez une image de base avec Python pour l'application Django
-FROM python:3.8
+FROM python:3.9
+RUN apt-get update
 
-# Définissez le répertoire de travail dans le conteneur
-WORKDIR /app
-
-# Copiez le fichier requirements.txt et installez les dépendances
-COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
-
-# Copiez le reste du code dans le conteneur
-COPY . .
-
-# Exposez le port sur lequel l'application Django écoute
-EXPOSE 8000
-
-# Commande pour démarrer l'application Django
-CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
+ENV PYTHONUNBUFFERED 1
+ENV APP_HOME /apprendre-django-tenant
+RUN mkdir -p $APP_HOME
+WORKDIR $APP_HOME
+COPY requirements.txt $APP_HOME
+RUN python -m pip install --upgrade pip
+RUN pip install -r requirements.txt
+COPY . $APP_HOME
+COPY apprendre-django-tenant.conf /etc/nginx/conf.d/
+CMD ["gunicorn", "platform_evaluation.wsgi:application", "-b", "0:8000", "-w", "10", "--log-level", "DEBUG", "--reload"]
