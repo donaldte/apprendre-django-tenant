@@ -12,8 +12,8 @@ services:
       - ".env"
     depends_on:
       - db
-    environment:
-      - DATABASE_URL=postgres://donald:chercheur@db:5432/testdatabase
+    # environment:
+    #   - DATABASE_URL=postgres://donald:chercheur@db:5432/testdatabase
 
   db:
     image: postgres

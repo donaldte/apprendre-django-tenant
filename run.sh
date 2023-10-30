@@ -16,7 +16,7 @@ pip install -r requirements.txt
 echo "Running migrations..."
 python manage.py makemigrations --merge
 
-python manage.py migrate
+python manage.py migrate_schemas --shared
 
 
 echo "  "
@@ -40,4 +40,4 @@ sleep 5
 echo "** Number of workers ${GUNICORN_WORKERS}"
 echo "** Version ${VERSION}"
 echo "** Starting gunicorn..."
-gunicorn dj_tenant.wsgi:application -b 0:8083 -w "${GUNICORN_WORKERS}" --log-level DEBUG --reload --threads=10 --timeout=3600
+gunicorn dj_tenant.wsgi:application -b 0:8025 -w "${GUNICORN_WORKERS}" --log-level DEBUG --reload --threads=10 --timeout=3600
